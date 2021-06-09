@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 
 import { inactive, active } from '../../store/categories.js';
 import { getItems } from '../../store/products.js'
+import { addItem } from '../../store/cart.js'
 
 const displayProducts = props => {
   return (
@@ -31,7 +32,7 @@ const displayProducts = props => {
                     <Typography component="p">$ {item.price}</Typography>
                   </CardContent>
                   <CardActions>
-                    <IconButton>Add to cart</IconButton>
+                    <IconButton onClick={() => props.addItem(item)}>Add to cart</IconButton>
                     <IconButton>View details</IconButton>
                   </CardActions>
                 </Card>
@@ -53,7 +54,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   inactive,
   active,
-  getItems
+  getItems,
+  addItem
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(displayProducts);

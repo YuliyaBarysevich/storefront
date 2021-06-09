@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -35,11 +36,15 @@ const Header = (props) => {
           <Typography variant="h6" className={classes.title}>
             Cool Store
           </Typography>
-          <Button color="inherit">Cart</Button>
+          <Button color="inherit">Cart ({props.count})</Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default Header;
+const mapStateToProps = state => {
+  return {count: state.cartArr.count}
+}
+
+export default connect(mapStateToProps)(Header);
