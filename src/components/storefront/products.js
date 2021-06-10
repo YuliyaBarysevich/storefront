@@ -8,6 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux'; 
 import { useEffect } from 'react'
@@ -23,6 +24,14 @@ const displayProducts = props => {
     props.getRemoteData();
   }, []);
 
+  const useStyles = makeStyles({
+    gridItem: {
+      margin: '40px'
+    }
+  })
+
+  const classes = useStyles();
+
   return (
     <>
       <Typography variant="h4" component="h4">Browse Categories</Typography>
@@ -30,12 +39,12 @@ const displayProducts = props => {
         <Button onClick={() => props.active('Electronics')}>Electronics</Button>
         <Button onClick={() => props.active('Food')}>Food</Button>
       </ButtonGroup>
-      <Grid container justify="center" spacing={5}>
+      <Grid container justify="center" spacing={1}>
         {console.log(props.items.listOfItems)}
         {props.items.listOfItems.map((item) => {
           if (item.category === props.activeCategory.toLowerCase()) {
             return (
-              <Grid>
+              <Grid item lg={4} className={classes.gridItem}>
                 <Card>
                   <CardHeader title={item.name} />
                   <CardContent>

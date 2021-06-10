@@ -1,13 +1,3 @@
-// const initialState = {
-//   listOfItems: [
-//     { name: 'MacBook', category: 'Electronics', price: 1300},
-//     { name: 'iPhone', category: 'Electronics', price: 899},
-//     { name: 'iPad', category: 'Electronics', price: 1099},
-//     { name: 'Salmon', category: 'Food', price: 15},
-//     { name: 'Eggs', category: 'Food', price: 5}
-//   ],
-//   activeItem: ''
-// }
 
 import superagent from 'superagent'
 
@@ -57,7 +47,16 @@ export const getAction = data => {
   }
 }
 
-
+// const initialState = {
+//   listOfItems: [
+//     { name: 'MacBook', category: 'Electronics', price: 1300},
+//     { name: 'iPhone', category: 'Electronics', price: 899},
+//     { name: 'iPad', category: 'Electronics', price: 1099},
+//     { name: 'Salmon', category: 'Food', price: 15},
+//     { name: 'Eggs', category: 'Food', price: 5}
+//   ],
+//   activeItem: ''
+// }
 
 // export default function itemsReducer(state = initialState, action) {
 //   const { type, payload } = action;
