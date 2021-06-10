@@ -2,6 +2,7 @@ let initialState = {
   cartArr: [],
   count: 0
 }
+let cart;
 
 export default function cartReducer(state = initialState, action){
   const { type, payload } = action;
@@ -14,7 +15,16 @@ export default function cartReducer(state = initialState, action){
     }
     case "REMOVE_ITEM":{
       let count = state.count - 1;
-      let cartArr = [...state.cartArr, payload]
+      let cartArr = [...state.cartArr]
+
+      cart = state.cartArr.map(item => {
+        if(item.name === payload.name){
+          let itemToRemove = cartArr.indexOf(item);
+          cartArr.splice(itemToRemove, 1)
+        }
+      })
+
+
       return { count, cartArr };
     }
     default:

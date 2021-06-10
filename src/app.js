@@ -5,7 +5,7 @@ import Footer from './components/footer/footer.js'
 import Products from './components/storefront/products.js'
 import SimpleCart from './components/storefront/cart.js'
 
-
+import './style.css'
 function App() {
   return(
     <>
