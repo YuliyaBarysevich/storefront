@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Link } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup'
@@ -49,10 +50,16 @@ const displayProducts = props => {
                   <CardHeader title={item.name} />
                   <CardContent>
                     <Typography component="p">$ {item.price}</Typography>
+                    <Typography component="p">In Stock: {item.inStock}</Typography>
                   </CardContent>
                   <CardActions>
                     <IconButton onClick={() => props.addItem(item)}>Add to cart</IconButton>
+                    <Link to={{
+                      pathname: `/details/${item._id}`,
+                      state: item,
+                    }}>
                     <IconButton>View details</IconButton>
+                    </Link>
                   </CardActions>
                 </Card>
               </Grid>
@@ -78,4 +85,7 @@ const mapDispatchToProps = {
   getRemoteData
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(displayProducts);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(displayProducts)
+)
+
