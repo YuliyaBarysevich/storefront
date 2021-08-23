@@ -1,0 +1,77 @@
+/*----- Body -----*/
+body {
+  position: relative;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: auto 0;
+  background-color: rgb(241, 241, 241);
+  display: block;
+  /* padding-bottom: 100px; */
+}
+
+/*----- Header and Nav -----*/
+
+
+.navLink {
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+}
+
+.navLink:hover {
+  transition: 350ms;
+  background-color: rgb(240, 240, 240); 
+}
+
+.sub-header{
+  font-size: 20px;
+}
+
+/*----- Simple Cart -----*/
+
+
+/*----- Main -----*/
+main {
+  /* width: 80%; */
+  height: 100vh;
+  margin: 0 auto;
+}
+
+/*----- Footer Clear -----*/
+.products > ul{
+  padding-bottom: 100px;
+}
+
+.product-details-wrapper{
+  padding-bottom: 150px;
+}
+
+.details-purchase-wrapper h4{
+  font-size: 22px;
+  opacity: 0.6;
+  text-decoration: underline;
+}
+
+/*----- Footer -----*/
+footer {
+  background-color: #83004A;
+  color: #ECE7EA;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+}
+
+footer > p {
+  padding: 5px;
+}
+
+footer > p > a{
+  text-decoration: none;
+  color: #5a69be;
+}
+
+
