@@ -7,8 +7,6 @@ import logo from '../../assets/store-logo.png'
 
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 
 const StyledBadge = withStyles((theme) => ({
@@ -17,11 +15,8 @@ const StyledBadge = withStyles((theme) => ({
     top: 13,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px',
-  },
+  }
 }))(Badge);
-
-
-
 
 
 const Header = (props) => {
@@ -42,46 +37,35 @@ const Header = (props) => {
 
   return (
     <>
-      <div style={{ width: '100%' }}>
-        <Box boxShadow={3} display="flex" p={1} bgcolor="background.paper">
-          <Box p={1} flexGrow={1} >
-            <NavLink to="/">
-              <img src={logo} alt="Logo" className="logo"/>
-            </NavLink>
-            <h1>
-              <NavLink className="navLink"  to="/">I am so tired to build this App</NavLink>
-            </h1>
-          </Box>
-          {/* <Box p={1}>
-
-          </Box> */}
-          <Box p={1} >
-            <NavLink className="navLink"  to="/cart">
-              <StyledBadge badgeContent={props.totalItems} color="secondary">
-                <LocalMallIcon style={{ fontSize: 30 }}/>
-              </StyledBadge>
-            </NavLink>
-          </Box>
-        </Box>
+    <div className="top-header">
+      <p>Enjoy free shipping on all orders with code FREESHIP. See terms ▸</p>
+    </div>
+      <div style={{ width: '100%' }} className="header">
+        <div>
+          <NavLink to="/">
+            <img src={logo} alt="Logo" className="logo"/>
+          </NavLink>
+        </div>
+        <div>
+          <input className="search-input" placeholder="Search..." />
+        </div>
+        <div>
+          <ul className="main-nav">
+           <li>Find Store</li>
+           <li>Gift Cards</li>
+           <li>Sign in</li>
+          </ul>
+        </div>
+        <div>
+          <NavLink className="cart-link"  to="/cart">
+            <StyledBadge badgeContent={props.totalItems} color="secondary">
+              <LocalMallIcon style={{ fontSize: 30 }}/>
+            </StyledBadge>
+          </NavLink>
+        </div>
       </div>
       
     </>
-
-    // <div className={classes.root}>
-    //   <AppBar position="static">
-    //     <Toolbar>
-    //       <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-    //         <MenuIcon />
-    //       </IconButton>
-    //       <Typography variant="h2" className={classes.title}>
-    //         Cool Store
-    //       </Typography>
-    //       <p>
-    //         <NavLink className="navLink"  to="/cart"> Cart ({props.totalItems})</NavLink>
-    //       </p>
-    //     </Toolbar>
-    //   </AppBar>
-    // </div>
   );
 };
 

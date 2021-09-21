@@ -5,9 +5,25 @@ import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typo
 import { makeStyles } from '@material-ui/core/styles';
 import { decrementRemoteData, loadingToggleAction } from '../../store/actions';
 import Loader from './loader.js'
-import Carousel from 'react-img-carousel';
+// import Carousel from 'react-img-carousel';
 
-require('react-img-carousel/lib/carousel.css');
+// require('react-img-carousel/lib/carousel.css');
+
+import ImageGallery from 'react-image-gallery';
+import banner from '../../assets/banner-img4.jpeg'
+import banner2 from '../../assets/banner-img2.jpeg'
+import banner3 from '../../assets/banner-img6.jpeg'
+const images = [
+  {
+    original: banner,
+  },
+  {
+    original: banner2,
+  },
+  {
+    original: banner3,
+  },
+];
 
 
  
@@ -35,15 +51,16 @@ const Products = props => {
 
   return (
     <>
-    {  props.showLoading && <Loader/> }
     <section>
-      <Carousel viewportWidth="100"  viewportHeight="100" slideHeight="500px" slideWidth="100%"  cellPadding={ 5 } autoplay={true}>
-        <img src='https://avatars.mds.yandex.net/get-zen_doc/127510/pub_5bb0e4fbfe7b2900aa92d32a_5bb0e667cfd97c00ab11e0ac/scale_1200'/>
-        <img src='https://www.verywellhealth.com/thmb/9tcRWldBb8cMqDqkjVanPUZYT9I=/3000x2000/filters:fill(87E3EF,1)/gluten-free-makeup-brands-562443-primary-recirc-b8cf5ac52391436ba4114a6355aac323.jpg'/>
-        <img src='https://dy6g3i6a1660s.cloudfront.net/Ao0dhnqOYl5Hu7HRDYXaPweoBLA/orig.jpg'/>
-      </Carousel> 
+      <ImageGallery items={images} 
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showBullets={true}
+        autoPlay={true}
+        />
     </section>
     <Typography className="page-header" variant="h2" gutterBottom>{props.activeCategory.toUpperCase() || 'Bestsellers'}</Typography>
+    { props.showLoading && <Loader/> }
     <ul>
       <Grid
         container spacing={1}
@@ -68,8 +85,8 @@ const Products = props => {
                       </Typography>
                     </CardContent>
                     <CardContent>
-                      <p>In stock: {product.inStock}</p>
-                      <p>Price: ${product.price}</p>
+                      {/* <p>In stock: {product.inStock}</p> */}
+                      <p className="price-tag">${product.price}.00</p>
                     </CardContent> 
                   </CardActionArea>
                   <CardActions>
@@ -81,7 +98,7 @@ const Products = props => {
                     </Button>
                     {/* <IconButton onClick={() => props.addItemToCart(product)}>Add to cart</IconButton> */}
                     <NavLink
-                      className="navLink"
+                      className="details-link"
                       to={{
                         pathname: `/details/${product._id}`,
                         state: product
@@ -94,50 +111,10 @@ const Products = props => {
             </li>
           )
         })}
-
       </Grid>
     </ul>
     </>
   )
-
-  // return (
-  //   <>
-  //     <Typography variant="h4" component="h4">Browse Categories</Typography>
-  //     <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-  //       <Button onClick={() => props.active('Electronics')}>Electronics</Button>
-  //       <Button onClick={() => props.active('Food')}>Food</Button>
-  //     </ButtonGroup>
-  //     <Grid container justify="center" spacing={1}>
-  //       {console.log(props.items.listOfItems)}
-  //       {props.items.listOfItems.map((item) => {
-  //         if (item.category === props.activeCategory.toLowerCase()) {
-  //           return (
-  //             <Grid item lg={4} className={classes.gridItem}>
-  //               <Card>
-  //                 <CardHeader title={item.name} />
-  //                 <CardContent>
-  //                   <Typography component="p">$ {item.price}</Typography>
-  //                   <Typography component="p">In Stock: {item.inStock}</Typography>
-  //                 </CardContent>
-  //                 <CardActions>
-  //                   <IconButton onClick={() => props.addItem(item)}>Add to cart</IconButton>
-  //                   <Link to={{
-  //                     pathname: `/details/${item._id}`,
-  //                     state: item,
-  //                   }}>
-  //                   <IconButton>View details</IconButton>
-  //                   </Link>
-  //                 </CardActions>
-  //               </Card>
-  //             </Grid>
-  //           )
-  //         } else {
-  //           return null;
-  //         }
-  //       })}
-  //     </Grid>
-  //   </>
-  // );
 }
 
 const mapStateToProps = state => ({
@@ -147,8 +124,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   decrementRemoteData,
-  loadingToggleAction,
-  // addItemToCart
+  loadingToggleAction
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products)

@@ -1,119 +1,146 @@
-/*----- Title on pages -----*/
-.page-header{
-  text-align: center;
-  padding: 50px;
-}
+/*----- Header -----*/
 
-.MuiBox-root-10{
+.top-header{
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  min-height: clamp(0px, 4.80769vw, 60px);
   align-items: center;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .logo{
-  width: 200px;
-  display: block;
+  display: inline-block;
+  margin-left: 15px;
+  width: 250px;
 }
 
-h1{
-  margin: 0 auto;
+.search-input{
+  width: 350px;
+  height: 35px;
+  border-radius: 25px;
+  border: none;
+  padding-left: 15px;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  background-color: rgba(236, 232, 232, 0.925);
 }
 
-.MuiBox-root-12{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main-nav{
+  position: absolute; 
+  top: 50%;
+  transform: translateY(-50%)
 }
 
-.carousel img{
-  width: 100%; 
+.main-nav li{
+  display: inline;
+  margin-left: 7px;
+  padding-right: 10px;
+  border-right: 1px solid #999b9e;
 }
 
+.main-nav li:last-child{
+  border-right: none;
+}
 
-
-
-
-/*----- Header and Nav -----*/
-.nav-ul{
-  text-align: center;
-  background-color: #83004A;
+.cart-link {
+  margin-right: 15px;
   padding: 10px;
-  margin: 0px !important;
 }
 
-.nav-li { 
+
+/*----- Category Navigation -----*/
+
+/* .category-nav{
+  height: 50px !important;
+  margin-bottom: 100px;
+} */
+
+.category-ul{
+  margin: 0px !important;
+  padding: 10px;
+  height: 50px;
+}
+
+.category-li { 
   margin: 10px;
   display: inline;
 }
 
-.nav-li button{
+.category-li button{
   color: white;
 }
 
-.navLink {
-  padding: 10px;
-}
+/*----- Simple Cart -----*/
 
-.navLink:hover {
-  padding: 10px;
-}
-
-.sub-header{
-  padding: 20px 0 0 10px;
-}
-
-/*----- Product Grid -----*/
-.products{
-  width: 100%;
-  justify-content: center;
-  position: absolute;
-  height: 100vh;
-}
-
-.makeStyles-root-8 {
-  margin: 30px;
-  width: 240px !important;
-  height: 380px !important;
-}
-
-.MuiCardActionArea-root {
-  height: 526px;
-}
-
-.makeStyles-media-16 {
-  height: 300px !important;
-}
-
-/*----- Running list of items on left of screen -----*/
 .simple-cart{
   position: fixed;
   right: 0;
-  top: 90px;
+  top: 199px;
   width: 300px;
+  margin-right: 0px;
   border: 3px solid #C26E9E;
   border-right: none;
   border-radius: 3px 0 0 3px;
-  margin-right: 5px;
-  background-color: #ECE7EA;
 }
 
 .checkout-btn-from-simplecart{
-  border: 1px solid rgb(211,0,119);
-  padding: 10px;
-  color: white;
-  background-color: #D30077;
-  margin: 10px auto;
   display: block;
   width: 80%;
-  height: 30px;
-  text-align: center;
+  height: 40px;
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid rgb(211,0,119);
   border-radius: 5px;
-  text-decoration: none;
-  font-size: 18px;
 }
 
+
+
+/*----- Product Grid -----*/
+
+h2{
+  text-align: center;
+}
+
+ .MuiCard-root {
+  height: 550px;
+}
+.MuiCardActionArea-root{
+  height: 500px;
+}
+
+/*
+.MuiButtonBase-root{
+  height: 350px !important;
+}
+.MuiCardMedia-root:hover{
+  cursor: auto;
+}
+
+.MuiButtonBase-root:hover{
+  cursor: auto;
+}
+
+.MuiCardActionArea-focusHighlight{
+  background-color: transparent !important;
+}
+*/
+.price-tag{
+  float: right;
+} 
+
+.MuiCardMedia-root{
+  height: 300px !important;
+} 
+
+
+
 /*----- Product Details Page -----*/
-.details-wrapper {
+/* .details-wrapper {
   display: flex;
   justify-content: space-between;
   margin: 0 20px 0 20px;
@@ -146,8 +173,41 @@ h1{
 
 .MuiButton-disableElevation{
   margin-bottom: 20px;
+} */
+
+.page-header{
+  margin-top: 40px !important;
+  margin-bottom: 30px !important;
+  font-size: 30px !important;
 }
 
+
+.product-details-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.details-cart{
+  height: 100%;
+  width: 500px;
+  display: block;
+}
+
+.details-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.details-buy-btn{
+  display: block !important;
+  margin: 20px auto !important;
+}
+
+.details-purchase-wrapper p{
+  word-break: break-all !important;
+}
 
 /*----- Checkout Page -----*/
 .checkout-wrapper {

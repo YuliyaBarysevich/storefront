@@ -8,6 +8,8 @@ import { addItemToCart } from '../../store/actions';
 
 import Loader from '../storefront/loader';
 
+import ImageGallery from 'react-image-gallery';
+
 import Carousel from 'react-img-carousel';
 
 require('react-img-carousel/lib/carousel.css');
@@ -34,6 +36,27 @@ const ProductDetails = props => {
 
   let singleProduct = props.data.find(product => product._id === props.location.state._id);
 
+  const images = [
+    {
+      original: singleProduct.url,
+      originalHeight: 350,
+      thumbnail: singleProduct.url,
+      thumbnailWidth: 30
+    },
+    {
+      original: singleProduct.url2,
+      originalHeight: 350,
+      thumbnail: singleProduct.url2,
+      thumbnailWidth: 20
+    },
+    {
+      original: singleProduct.url3,
+      originalHeight: 350,
+      thumbnail: singleProduct.url3,
+      thumbnailWidth: 50
+    },
+  ];
+
   if(!singleProduct){
     return(
       <>
@@ -44,17 +67,23 @@ const ProductDetails = props => {
 
   return (
     <>
-      <Typography className="page-header" variant="h2" gutterBottom>{singleProduct.name.toUpperCase()}</Typography>
+      <Typography className="page-header" variant="h2" gutterBottom>{singleProduct.name}</Typography>
       <section className="product-details-wrapper">
-        <Card className={classes.root} display="flex">
+        <Card className="details-cart" display="flex">
           {/* <CardMedia
           className={classes.media}
           image={singleProduct.url2} /> */}
-          <Carousel viewportWidth="100"  viewportHeight="100" slideHeight="500px" slideWidth="100%"  cellPadding={ 5 }>
+          {/* <Carousel viewportWidth="100"  viewportHeight="100" slideHeight="500px" slideWidth="100%"  cellPadding={ 5 }>
         <img src={singleProduct.url}/>
         <img src={singleProduct.url2}/>
         <img src={singleProduct.url3}/>
-      </Carousel>
+      </Carousel> */}
+      <ImageGallery items={images} 
+        showPlayButton={false}
+        showFullscreenButton={false}
+        showBullets={true}
+        autoPlay={true}
+        />
           
           <CardContent>
             <div className="details-wrapper">

@@ -29,13 +29,13 @@ const Categories = props => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className="category-nav">
       {/* <div className="sub-header">
         <Icon fontSize="inherit" className="sub-header">Browse all Categories</Icon>
       </div> */}
-      <ul className="nav-ul">
+      <ul className="category-ul">
         {props.categories.map(category => (
-          <li className="nav-li" key={category.name} color="primary">
+          <li className="category-li" key={category.name} color="primary">
             <Button value={category.name} onClick={setActive} color="primary">
               {category.name}
             </Button>

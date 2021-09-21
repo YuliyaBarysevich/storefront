@@ -1,0 +1,97 @@
+/*----- Header -----*/
+
+.top-header{
+  background-color: #B6A1AD;
+}
+
+.search-input:focus::placeholder {
+  color: black;
+  opacity: 0.1;
+}
+
+.search-input:focus{
+  background-color: white;
+  border: 1px solid black;
+  outline: none;
+}
+
+.cart-link {
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+}
+
+.cart-link:hover {
+  transition: 350ms;
+  background-color: rgb(240, 240, 240); 
+}
+
+
+/*----- Category Navigation -----*/
+
+.category-ul{
+  text-align: center;
+  background-color: #83004A;
+}
+
+
+
+/*----- Simple Cart -----*/
+
+.simple-cart{
+  background-color: #ECE7EA;
+}
+
+.checkout-btn-from-simplecart{
+  color: white;
+  background-color: #D30077;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+
+/*----- Products -----*/
+
+.price-tag{
+  font-size: 25px;
+  color: #888787;
+  font-weight: 200;
+}
+
+
+/*----- Footer Clear -----*/
+/* .products > ul{
+  padding-bottom: 100px;
+} */
+
+.product-details-wrapper{
+  padding-bottom: 150px;
+}
+
+.details-purchase-wrapper h4{
+  font-size: 22px;
+  opacity: 0.6;
+  text-decoration: underline;
+}
+
+/*----- Footer -----*/
+footer {
+  background-color: #83004A;
+  color: #ECE7EA;
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+}
+
+footer > p {
+  padding: 5px;
+}
+
+footer > p > a{
+  text-decoration: none;
+  color: #5a69be;
+}
