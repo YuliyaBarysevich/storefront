@@ -1,81 +1,131 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
+import { withRouter, Link, NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Grid, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { decrementRemoteData, loadingToggleAction } from '../../store/actions';
+import Loader from './loader.js'
+// import Carousel from 'react-img-carousel';
 
-import { connect } from 'react-redux'; 
-import { useEffect } from 'react'
+// require('react-img-carousel/lib/carousel.css');
 
-import { inactive, active } from '../../store/categories.js';
-import { getItems } from '../../store/products.js'
-import { getRemoteData } from '../../store/products.js'
-import { addItem } from '../../store/cart.js'
+import ImageGallery from 'react-image-gallery';
+import banner from '../../assets/banner-img4.jpeg'
+import banner2 from '../../assets/banner-img2.jpeg'
+import banner3 from '../../assets/banner-img6.jpeg'
+const images = [
+  {
+    original: banner,
+  },
+  {
+    original: banner2,
+  },
+  {
+    original: banner3,
+  },
+];
 
-const displayProducts = props => {
 
-  useEffect(() => {
-    props.getRemoteData();
-  }, []);
+ 
+// import { useEffect } from 'react'
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+    margin: 30
+  },
+  media: {
+    height: 140,
+  },
+  gridContainer: {
+    paddingLeft: "40px",
+    paddingRight: "40px"
+  }
+});
 
-  const useStyles = makeStyles({
-    gridItem: {
-      margin: '40px'
-    }
-  })
+
+
+const Products = props => {
 
   const classes = useStyles();
 
+
   return (
     <>
-      <Typography variant="h4" component="h4">Browse Categories</Typography>
-      <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-        <Button onClick={() => props.active('Electronics')}>Electronics</Button>
-        <Button onClick={() => props.active('Food')}>Food</Button>
-      </ButtonGroup>
-      <Grid container justify="center" spacing={1}>
-        {console.log(props.items.listOfItems)}
-        {props.items.listOfItems.map((item) => {
-          if (item.category === props.activeCategory.toLowerCase()) {
-            return (
-              <Grid item lg={4} className={classes.gridItem}>
-                <Card>
-                  <CardHeader title={item.name} />
-                  <CardContent>
-                    <Typography component="p">$ {item.price}</Typography>
-                  </CardContent>
+    <section>
+      <ImageGallery items={images} 
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showBullets={true}
+        autoPlay={true}
+        />
+    </section>
+    <Typography className="page-header" variant="h2" gutterBottom>{props.activeCategory.toUpperCase() || 'Bestsellers'}</Typography>
+    { props.showLoading && <Loader/> }
+    <ul>
+      <Grid
+        container spacing={1}
+        className={classes.gridContainer}
+        justify="center"
+      >
+        {props.data.map(product => {
+          if(product.inStock <= 0) return;
+          if(props.activeCategory !== '' && product.category !== props.activeCategory) return;
+          return(
+            <li key={product.name}>
+              <Grid item lg={12}>
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardMedia className={classes.media} image={product.url} title={product.name} />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {product.name.toUpperCase()}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                        {product.miniDescription}
+                      </Typography>
+                    </CardContent>
+                    <CardContent>
+                      {/* <p>In stock: {product.inStock}</p> */}
+                      <p className="price-tag">${product.price}.00</p>
+                    </CardContent> 
+                  </CardActionArea>
                   <CardActions>
-                    <IconButton onClick={() => props.addItem(item)}>Add to cart</IconButton>
-                    <IconButton>View details</IconButton>
+                    <Button size="small" color="primary" onClick={() => {
+                      props.decrementRemoteData(product)
+                      props.addItemToCart(product)
+                    }}>
+                      Add to Cart
+                    </Button>
+                    {/* <IconButton onClick={() => props.addItemToCart(product)}>Add to cart</IconButton> */}
+                    <NavLink
+                      className="details-link"
+                      to={{
+                        pathname: `/details/${product._id}`,
+                        state: product
+                      }}>
+                        <Button size="small" color="primary">Details</Button>
+                    </NavLink>
                   </CardActions>
                 </Card>
               </Grid>
-            )
-          } else {
-            return null;
-          }
+            </li>
+          )
         })}
       </Grid>
+    </ul>
     </>
-  );
+  )
 }
 
-const mapStateToProps = state => {
-  return { items: state.items, activeCategory: state.categories.activeCategory }
-}
+const mapStateToProps = state => ({
+  data: state.products.products,
+  showLoading: state.products.showLoading
+})
 
 const mapDispatchToProps = {
-  inactive,
-  active,
-  getItems,
-  addItem,
-  getRemoteData
+  decrementRemoteData,
+  loadingToggleAction
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(displayProducts);
+export default connect(mapStateToProps, mapDispatchToProps)(Products)
+

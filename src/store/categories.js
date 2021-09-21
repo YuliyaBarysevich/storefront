@@ -1,38 +1,47 @@
 // setup of initial state
 
-let initialState = {
+export const initialState = {
   categories: [
-    { categoryName: 'Electronics', description: 'Cool electronics description'},
-    { categoryName: 'Food', description: 'Great food description'}
+    { name: 'Makeup', description: 'Cool Makeup description'},
+    { name: 'Skin Care', description: 'Great Skin Care description'},
+    { name: 'Hair', description: 'Great Hair description'},
+    { name: 'Fragrance', description: 'Great Fragrance description'},
+    { name: 'Bath & Body', description: 'Great Bath & Body description'}
+
   ],
   activeCategory: ''
 }
 
-export default (state = initialState, action) => {
+import { SET_CATEGORY } from "./actions";
+
+export default (state = initialState, action={}) => {
   let {type, payload} = action;
 
   switch(type){
-    case 'INACTIVE':
-      return initialState;
-    case 'ACTIVE':
-      return{...state, activeCategory: payload.category};
+    case 'SET_CATEGORY': {
+      let activeCategory = payload
+      return{
+        ...state,
+        activeCategory
+      }
+    }
     default:
       return state;
   }    
 }
 
-export function inactive(){
-  return {
-    type: 'INACTIVE'
-  }
-}
+// export function inactive(){
+//   return {
+//     type: 'INACTIVE'
+//   }
+// }
 
-export function active(category, description){
-  return {
-    type: 'ACTIVE',
-    payload: {
-      category,
-      description
-    }
-  }
-}
+// export function active(category, description){
+//   return {
+//     type: 'ACTIVE',
+//     payload: {
+//       category,
+//       description
+//     }
+//   }
+// }
