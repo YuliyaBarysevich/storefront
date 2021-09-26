@@ -22,6 +22,14 @@ const useStyles = makeStyles({
   media: {
     height: 300,
     margin: 20
+  },
+  button: {
+    background: 'linear-gradient(45deg, #83004A 40%, #ECE7EA 99%)',
+    color: 'white',
+    padding: '10px 23px',
+    fontSize: '17px',
+    margin: '20px auto',
+    display: 'block'
   }
 });
 
@@ -70,21 +78,12 @@ const ProductDetails = props => {
       <Typography className="page-header" variant="h2" gutterBottom>{singleProduct.name}</Typography>
       <section className="product-details-wrapper">
         <Card className="details-cart" display="flex">
-          {/* <CardMedia
-          className={classes.media}
-          image={singleProduct.url2} /> */}
-          {/* <Carousel viewportWidth="100"  viewportHeight="100" slideHeight="500px" slideWidth="100%"  cellPadding={ 5 }>
-        <img src={singleProduct.url}/>
-        <img src={singleProduct.url2}/>
-        <img src={singleProduct.url3}/>
-      </Carousel> */}
-      <ImageGallery items={images} 
-        showPlayButton={false}
-        showFullscreenButton={false}
-        showBullets={true}
-        autoPlay={true}
+        <ImageGallery items={images} 
+          showPlayButton={false}
+          showFullscreenButton={false}
+          showBullets={true}
+          autoPlay={true}
         />
-          
           <CardContent>
             <div className="details-wrapper">
               <Typography gutterBottom variant="h5" component="h2">
@@ -96,7 +95,7 @@ const ProductDetails = props => {
             </div>
             <section className="details-purchase-wrapper">
               <Button
-                className="details-buy-btn"
+                className={classes.button}
                 display="flex"
                 variant="contained"
                 color="primary"

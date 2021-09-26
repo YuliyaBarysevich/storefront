@@ -31,7 +31,7 @@ const images = [
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    margin: 30
+    margin: 30,
   },
   media: {
     height: 140,
@@ -39,6 +39,24 @@ const useStyles = makeStyles({
   gridContainer: {
     paddingLeft: "40px",
     paddingRight: "40px"
+  },
+  button: {
+    background: 'linear-gradient(45deg, #83004A 30%, #ECE7EA 98%)',
+    color: 'white',
+    padding: '7px'
+  },
+  link: {
+    textDecoration: 'none',
+  },
+  linkButton: {
+    color: 'black',
+    background: '#ededed',
+    border: 'none'
+  },
+  cardActionArea: {
+    "&:hover": {
+      background: 'transparent',
+    }
   }
 });
 
@@ -59,7 +77,7 @@ const Products = props => {
         autoPlay={true}
         />
     </section>
-    <Typography className="page-header" variant="h2" gutterBottom>{props.activeCategory.toUpperCase() || 'Bestsellers'}</Typography>
+    <Typography  className="page-header" variant="h2" gutterBottom>{props.activeCategory.toUpperCase() || 'Bestsellers'}</Typography>
     { props.showLoading && <Loader/> }
     <ul>
       <Grid
@@ -74,15 +92,22 @@ const Products = props => {
             <li key={product.name}>
               <Grid item lg={12}>
                 <Card className={classes.root}>
-                  <CardActionArea>
+                  <CardActionArea className={classes.cardActionArea}>
                     <CardMedia className={classes.media} image={product.url} title={product.name} />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography gutterBottom variant="h6" component="h2">
                         {product.name.toUpperCase()}
                       </Typography>
                       <Typography variant="body2" color="textSecondary" component="p">
                         {product.miniDescription}
                       </Typography>
+                      <NavLink className={classes.link}
+                      to={{
+                        pathname: `/details/${product._id}`,
+                        state: product
+                      }}>
+                        <Button className={classes.linkButton} variant="outlined" size="small">Details</Button>
+                    </NavLink>
                     </CardContent>
                     <CardContent>
                       {/* <p>In stock: {product.inStock}</p> */}
@@ -90,21 +115,12 @@ const Products = props => {
                     </CardContent> 
                   </CardActionArea>
                   <CardActions>
-                    <Button size="small" color="primary" onClick={() => {
+                    <Button className={classes.button} size="small" color="primary" onClick={() => {
                       props.decrementRemoteData(product)
                       props.addItemToCart(product)
                     }}>
                       Add to Cart
                     </Button>
-                    {/* <IconButton onClick={() => props.addItemToCart(product)}>Add to cart</IconButton> */}
-                    <NavLink
-                      className="details-link"
-                      to={{
-                        pathname: `/details/${product._id}`,
-                        state: product
-                      }}>
-                        <Button size="small" color="primary">Details</Button>
-                    </NavLink>
                   </CardActions>
                 </Card>
               </Grid>

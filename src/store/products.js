@@ -68,23 +68,3 @@ export default (state = initialState, action = {}) => {
   }
 }
 
-// export const getRemoteData = () => dispatch => {
-//   return superagent.get(api)
-//     .then(response => {
-//       dispatch(getAction(response.body))
-//     })
-// }
-
-// export function getItems(category){
-//   const items = initialState.listOfItems;
-//   const filteredByCategory = items.filter(item => item.category === category);
-//   return filteredByCategory;
-// }
-
-// export const getAction = data => {
-//   return{
-//     type: 'GET',
-//     payload: data
-//   }
-// }
-

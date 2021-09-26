@@ -54,17 +54,16 @@ const Header = (props) => {
            <li>Find Store</li>
            <li>Gift Cards</li>
            <li>Sign in</li>
+           <li>
+             <NavLink className="cart-link"  to="/cart">
+               <StyledBadge badgeContent={props.totalItems} color="secondary">
+                 <LocalMallIcon style={{ fontSize: 30 }}/>
+               </StyledBadge>
+             </NavLink>
+           </li>
           </ul>
         </div>
-        <div>
-          <NavLink className="cart-link"  to="/cart">
-            <StyledBadge badgeContent={props.totalItems} color="secondary">
-              <LocalMallIcon style={{ fontSize: 30 }}/>
-            </StyledBadge>
-          </NavLink>
-        </div>
       </div>
-      
     </>
   );
 };
