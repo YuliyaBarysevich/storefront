@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
+    background: 'white',
   },
   avatar:{
     marginRight: '10px'
@@ -31,7 +31,7 @@ const SimpleCart = props => {
       <section className="simple-cart">
         {props.cart.map(product => 
           <div key={`cart${product.name}`} className={classes.root}>
-            <List component="nav" aria-label="secondary" >
+            <List component="nav" aria-label="secondary">
               <ListItem button>
                 <Avatar alt={product.name} src={product.url} className={classes.avatar} />
                 <ListItemText primary={product.name} secondary={product.total} />

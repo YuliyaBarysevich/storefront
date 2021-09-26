@@ -30,9 +30,6 @@ const Categories = props => {
 
   return (
     <div className="category-nav">
-      {/* <div className="sub-header">
-        <Icon fontSize="inherit" className="sub-header">Browse all Categories</Icon>
-      </div> */}
       <ul className="category-ul">
         {props.categories.map(category => (
           <li className="category-li" key={category.name} color="primary">
