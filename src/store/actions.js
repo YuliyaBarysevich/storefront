@@ -1,7 +1,8 @@
 import superagent from 'superagent';
 // import { getAction } from './products';
 
-let api = 'https://barysevich-server-api.herokuapp.com/api/v1/products';
+let api = 'https://barysesevich-api.herokuapp.com/api/v1/products';
+
 
 export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
 export const GET_PRODUCTS_PENDING = 'GET_PRODUCTS_PENDING';
